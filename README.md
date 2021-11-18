@@ -70,7 +70,7 @@ Start System Terminal (CMD/BASH/PowerShell/..)
 
 
 ## Project Report
-[![report](https://img.shields.io/static/v1.svg?label=Project&message=Report&logo=microsoft-word&style=social)]()
+[![Report](https://img.shields.io/static/v1.svg?label=Project&message=Report&logo=microsoft-word&style=social)](https://github.com/Bipin-Giri-217/Library-Management-System/files/7560355/PROJECT.pdf)
 
 
 ## Need help?
