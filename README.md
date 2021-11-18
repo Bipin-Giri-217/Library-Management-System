@@ -69,9 +69,36 @@ Start System Terminal (CMD/BASH/PowerShell/..)
 ```
 
 
+## FEW Screenshots
+- ## *Main Menu*
+![image](https://user-images.githubusercontent.com/76618524/142368617-226d478b-5af2-45d2-b0c2-a75133488ab6.png)
+
+- ## *ADD BOOK (Adding one-by-one)*
+![image](https://user-images.githubusercontent.com/76618524/142370974-393d954c-c38f-46f0-87bb-c61b7632b643.png)
+![image](https://user-images.githubusercontent.com/76618524/142371053-ba51378d-b41d-4706-9ae7-accefc08c6ae.png)
+![image](https://user-images.githubusercontent.com/76618524/142371221-07c89f94-e00b-474f-a5d5-9d39e1d15c62.png)
+
+- ## *See Available Book details*
+![image](https://user-images.githubusercontent.com/76618524/142371409-07369836-c02a-45db-9bb3-1afc4ec0d69b.png)
+
+- ## *Issue BOOK*
+![image](https://user-images.githubusercontent.com/76618524/142371834-7ff32677-da22-4f66-9c91-efa350fc540d.png)
+
+- ## *Get Issued Book details*
+![image](https://user-images.githubusercontent.com/76618524/142371974-83bfc207-2400-4d65-9594-ab76146feb8d.png)
+
+- ## *Checking Available Books After Issuing it*
+![image](https://user-images.githubusercontent.com/76618524/142372137-47b6bc1f-c32b-45e5-8c85-b0bbf9ce38bc.png)
+
+- ## *Return Book*
+![image](https://user-images.githubusercontent.com/76618524/142372321-91a48414-b7cd-4807-a0f1-db9759c9a8d2.png)
+
+- ## *Checking Available Books After Returning it back*
+![image](https://user-images.githubusercontent.com/76618524/142372533-b094e650-b448-4c66-9203-1ee5a2d49ad3.png)
+
+
 ## Project Report
 [![Report](https://img.shields.io/static/v1.svg?label=Project&message=Report&logo=microsoft-word&style=social)](https://github.com/Bipin-Giri-217/Library-Management-System/files/7560355/PROJECT.pdf)
-
 
 ## Need help?
 
