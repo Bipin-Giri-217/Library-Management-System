@@ -1,11 +1,9 @@
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 abstract class LibrarySystem {
-    private String bookName, bookAuthor, issuedTo;
-    LocalDate issuedOn;
+    public String bookName, bookAuthor, issuedTo;
+    Date issuedOn;
+    Calendar c = Calendar.getInstance();
 
     public LibrarySystem() {
         this.bookName = null;
@@ -37,12 +35,9 @@ abstract class LibrarySystem {
         this.issuedTo = issuedTo;
     }
 
-    public LocalDate getIssuedOn() {
+    public Date getIssuedOn() {
+        issuedOn = c.getTime(); 
         return issuedOn;
-    }
-
-    public void setIssuedOn(LocalDate issuedOn) {
-        this.issuedOn = issuedOn;
     }
 
     abstract void addBook();
@@ -53,7 +48,7 @@ abstract class LibrarySystem {
 }
 
 class Librarian extends LibrarySystem {
-    List<Librarian> availableBooks, issuedBooks;
+    ArrayList<Librarian> availableBooks, issuedBooks;
     Scanner sc = new Scanner(System.in);
 
     public Librarian() {
@@ -63,16 +58,22 @@ class Librarian extends LibrarySystem {
 
     String getNameOfBook() {
         String bn;
-        do {
-            System.out.print("Enter Name of Book : ");
-            bn = sc.nextLine();
-            Librarian chk = isBookAvailable(bn);
-            if (chk != null) {
-                System.out.println("Book ' " + bn + " ' is Successfully returned ");
-                printDetails(chk);
-            } else
-                return bn;
-        } while (true);
+        System.out.print("Enter Name of Book : ");
+        bn = sc.nextLine();
+        Librarian chk = isBookAvailable(bn);
+        Librarian chk1 = isBookIssued(bn);
+        if(chk1 != null) {
+            System.out.println("Sorry! Book Can't be Added , it " + bn + " is Already Issued and it's Details are : ");
+            printDetails(chk1);
+            return null;
+            }
+        else if (chk != null) {
+            System.out.println("Book "+bn+" is Already Present so Book  " + bn + " is Refused to Add and it's Details are : ");
+            printDetails(chk);
+            return null;
+        } 
+        else
+            return bn;
     }
 
     String getAuthorOfBook() {
@@ -85,8 +86,8 @@ class Librarian extends LibrarySystem {
         System.out.println("Name of Book : " + l.getBookName());
         System.out.println("Author of Book : " + l.getBookAuthor());
         if (l.getIssuedTo() != null) {
-            System.out.println("Book issued to " + l.getIssuedTo());
-            System.out.println("Book issued on " + l.getIssuedOn());
+            System.out.println("Book issued to : " + l.getIssuedTo());
+            System.out.println("Book issued on : " + l.getIssuedOn());
         }
         System.out.println();
     }
@@ -118,7 +119,8 @@ class Librarian extends LibrarySystem {
                     printDetails(l);
                 }
             }
-        } else {
+        } 
+        else {
             if (issuedBooks.size() == 0) {
                 System.out.println("No books Issued");
             } else {
@@ -132,9 +134,16 @@ class Librarian extends LibrarySystem {
     @Override
     void addBook() {
         Librarian l1 = new Librarian();
-        l1.setBookName(getNameOfBook());
+        String book =getNameOfBook();
+        l1.setBookName(book);
+        if (book==null){
+            return;
+        }
+        else{
         l1.setBookAuthor(getAuthorOfBook());
         availableBooks.add(l1);
+        System.out.println("Book Added Successfully");
+        }
     }
 
     @Override
@@ -145,16 +154,16 @@ class Librarian extends LibrarySystem {
         Librarian chk = isBookAvailable(rb);
         Librarian chk1 = isBookIssued(rb);
         if (chk == null && chk1 == null) {
-            System.out.println("Book ' " + rb + " ' is neither issued nor available");
+            System.out.println("Book '" + rb + "' is neither issued nor available");
         } else if (chk != null) {
-            System.out.println("Book ' " + rb + " ' is already returned and it's details are ");
+            System.out.println("Book '" + rb + "' is already returned and it's details are ");
             printDetails(chk);
         } else {
             l3.setBookName(chk1.getBookName());
             l3.setBookAuthor(chk1.getBookAuthor());
             availableBooks.add(l3);
             issuedBooks.remove(chk1);
-            System.out.println("Book ' " + rb + " ' is Successfully returned ");
+            System.out.println("Book '" + rb + "' is Successfully returned ");
         }
 
     }
@@ -177,51 +186,55 @@ class Librarian extends LibrarySystem {
             l2.setIssuedTo(sc.nextLine());
             l2.setBookName(chk.getBookName());
             l2.setBookAuthor(chk.getBookAuthor());
-            l2.setIssuedOn(LocalDate.now());
             issuedBooks.add(l2);
             availableBooks.remove(chk);
-            System.out.println("Book ' " + ib + " ' is Successfully issued to " + l2.getIssuedTo() + " ");
+            System.out.println("Book '" + ib + "' is Successfully issued to " + l2.getIssuedTo());
         }
 
     }
+
 }
 
-public class LibraryManagement {
+public class LibraryManagementSystem {
     public static void main(String[] args) {
         Librarian lib = new Librarian();
         Scanner sc = new Scanner(System.in);
-        String ch;
+        char choice;
         do {
-            System.out.println(
-                    "1. Add a book.\n2. Issue a book.\n3. Return a book.\n4. Available books.\n5. Issued books.\n6. Exit  ");
+            System.out.println("\n1. Add a book.\n2. Issue a book.\n3. Return a book.\n4. Available books.\n5. Issued books.\n6. Exit  ");
             System.out.print("Enter Choice : ");
-            ch = sc.nextLine();
+            choice = sc.next().charAt(0);
             System.out.println();
-            switch (ch) {
-            case "1":
+            switch (choice) {
+            case '1':
                 lib.addBook();
                 break;
 
-            case "2":
+            case '2':
                 lib.issueBook();
                 break;
 
-            case "3":
+            case '3':
                 lib.returnBook();
                 break;
 
-            case "4":
+            case '4':
                 lib.printAllBooks("available");
                 break;
 
-            case "5":
+            case '5':
                 lib.printAllBooks("issued");
                 break;
 
-            case "6":
-                System.out.println("Exiting.....");
+            case '6':
+                System.out.println("Exited Successfully.....");
+                break;
+                
+            default:
+                System.out.println("Invalid Input");
             }
-            System.out.println();
-        } while (!ch.equals("6"));
+            
+        } while (choice!='6');
+        sc.close();
     }
 }
