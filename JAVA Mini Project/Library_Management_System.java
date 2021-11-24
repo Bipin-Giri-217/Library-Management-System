@@ -195,7 +195,7 @@ class Librarian extends LibrarySystem {
 
 }
 
-public class LibraryManagementSystem {
+public class Library_Management_System {
     public static void main(String[] args) {
         Librarian lib = new Librarian();
         Scanner sc = new Scanner(System.in);
